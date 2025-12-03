@@ -1,0 +1,11 @@
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\bin\Debug\net10.0\SimpleSharpUtils.deps.json
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\bin\Debug\net10.0\SimpleSharpUtils.dll
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\bin\Debug\net10.0\SimpleSharpUtils.pdb
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.AssemblyInfoInputs.cache
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.AssemblyInfo.cs
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.csproj.CoreCompileInputs.cache
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.dll
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\refint\SimpleSharpUtils.dll
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.pdb
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\ref\SimpleSharpUtils.dll
