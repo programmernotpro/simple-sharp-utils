@@ -9,3 +9,4 @@ C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\Simpl
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\refint\SimpleSharpUtils.dll
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.pdb
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\ref\SimpleSharpUtils.dll
+C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils\obj\Debug\net10.0\SimpleSharpUtils.sourcelink.json
