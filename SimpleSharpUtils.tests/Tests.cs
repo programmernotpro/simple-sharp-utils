@@ -1,27 +1,53 @@
-﻿using SimpleSharpUtils;
+﻿using FileUtils;
+using NUnit.Framework.Internal.Execution;
 
 public class Tests
 {
+    //Path of the file that is going to be tested with all methods. 
+    string path = @"C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\testFiles\hello.txt";
+
     [SetUp]
     public void Setup()
     {
     }
 
     [Test]
-    //Test for .Reverse()
-    public void ReverseTest() {
+    public void WordCountTest() {
 
-        string expected = "olleh";
-        {
-            Assert.That(expected,Is.EqualTo("hello".Reverse()));
-        }
+        int expected = 7;
+
+        Assert.That(FileUtils.File.CountWords(path),Is.EqualTo(expected));
     }
 
-    //Test for factorial
-    public void FactorialTest()
+    [Test]
+    public void SizeTest()
     {
-        int expected = 120;
+        decimal expected = 0.03m;
         
-        Assert.That(expected,Is.EqualTo(IntUtilities.Factorial(120)));
+        Assert.That(FileUtils.File.GetSize(path),Is.EqualTo(expected));
     } 
+
+    [Test]
+    public void FormattedSizeTest()
+    {
+        string expected = "30B";
+
+        Assert.That(FileUtils.File.GetFormattedSize(path),Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void ReadTest()
+    {
+        string expected = "Hello there! I am a test file!\n";
+
+        Assert.That(FileUtils.File.Read(path),Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void ReadAllTest()
+    {
+        string expected = "Hello there! I am a test file!\n";
+
+        Assert.That(FileUtils.File.ReadAll(path),Is.EqualTo(expected));
+    }
 }

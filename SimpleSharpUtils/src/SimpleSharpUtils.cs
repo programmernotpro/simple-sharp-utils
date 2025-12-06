@@ -6,8 +6,9 @@ using System.Diagnostics.Metrics;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Drawing;
+using System.Data.Common;
 
-namespace File 
+namespace FileUtils
 {   
     public class File
     {
@@ -19,14 +20,17 @@ namespace File
             try
             {
                 StreamReader sr = new StreamReader(filePath);
+                string? line;
 
-                while (sr.ReadLine() != null)
+                do
                 {
-                    result +=  $@"{sr.ReadLine()}\n";
-                }
+                    result +=  $@"{sr.ReadLine()}" + "\n";
+
+                } while ((line = sr.ReadLine()) != null);
+
                 return result;
             } 
-            catch (Exception e)
+            catch (Exception)
             {
                 return result;
             }
@@ -44,37 +48,41 @@ namespace File
 
                 for (int i = from; i < to; i++)
                 {
-                    result += $@"{sr.ReadLine()}\n";
+                    if (sr.EndOfStream) break;
+
+                    result += $@"{sr.ReadLine()}" + "\n";
                 }
 
                 return result;
             } 
-            catch (Exception e)
+            catch (Exception)
             {
                 return result;
             }
         }
 
         //Returns the size of a file (string)
-        public static string getFormattedSize(string path)
-        {   try {
-                FileInfo file = new FileInfo(path);
-                long size = file.Length;
+        public static string GetFormattedSize(string path)
+        {   try 
+        {
+                decimal fileSize = new FileInfo(path).Length;
 
-                string[] possibleSizes = ["B","KB","MB","GB","TB"];
-                string currentMeasurement = possibleSizes[0];
+                string[] possibleSizes = {"B","KB","MB","GB","TB"};
 
                 int index = 0;
+                string currentMeasurement = possibleSizes[index];
 
-                while (size > 1024 && currentMeasurement != "TB")
+                while (fileSize > 1024 && currentMeasurement != "TB")
                 {
                     index++;
-                    size /= 1024;
+                    fileSize /= 1024; ;
                     currentMeasurement = possibleSizes[index];
                 }
 
-                return $"{size}{currentMeasurement}";
-            } catch(Exception e)
+                return $"{Math.Round(fileSize,2)}{currentMeasurement}";
+            } 
+            
+            catch(Exception)
             {
                 return "";
             }
@@ -82,32 +90,31 @@ namespace File
         
 
         //Returns the raw size of a file without string formatting
-        public static long getSize(string path, string measurement="KB")
-        {
-            try {
-                string[] possibleSizes = ["B","KB","MB","GB","TB"];
-
-                short index = (short)possibleSizes.IndexOf(measurement); // Here, it is converted to a short for some extra crispy efficiency (not that useful to be honest)
-
-                if (index != -1)
+        public static decimal GetSize(string path, string measurement="KB")
+        {   
+                try 
                 {
-                    FileInfo file = new FileInfo(path);
-                    long size = file.Length;
+                    string[] possibleSizes = {"B","KB","MB","GB","TB"};
 
-                    return  size / (1024 * (index + 1));
+                    int measurementIndex = possibleSizes.IndexOf(measurement);
+                    if (measurementIndex == -1) return -1;
+
+                    decimal fileSize = new FileInfo(path).Length;
+
+                    for (int i = 0; i < measurementIndex; i++)
+                    {
+                        fileSize /= 1024; 
+                    }
+
+                    return Math.Round(fileSize, 2);
                 } 
-                else
+                catch(Exception)
                 {
                     return -1;
                 }
             }
-            catch (Exception e)
-            {
-                return -1;
-            }
-        }
 
-        public static long countWords(string filePath)
+        public static long CountWords(string filePath)
         {
             try {
                 string content = System.IO.File.ReadAllText(filePath);
@@ -115,7 +122,7 @@ namespace File
                 string[] wordCount = content.Split(" ", StringSplitOptions.RemoveEmptyEntries);
                 
                 return wordCount.Count();
-            } catch (Exception e)
+            } catch (Exception)
             {
                 return -1;
             }
