@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using IOFile = System.IO.File;
+﻿using IOFile = System.IO.File;
 using UtilsFile = FileUtils.File;
 using System.Linq;
 
