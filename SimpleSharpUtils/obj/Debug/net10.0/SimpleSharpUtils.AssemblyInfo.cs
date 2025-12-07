@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleSharpUtils")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebb51956009e2edd8a5414843955272431af7d84")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a78965f41e238b6a34eb64782344281a8fc818a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleSharpUtils")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleSharpUtils")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
