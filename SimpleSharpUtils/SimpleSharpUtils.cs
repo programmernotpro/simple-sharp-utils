@@ -7,6 +7,9 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Drawing;
 using System.Data.Common;
+using System.Dynamic;
+using System.Runtime.InteropServices;
+using System.Numerics;
 
 namespace FileUtils
 {   
@@ -132,6 +135,97 @@ namespace FileUtils
                 return -1;
             }
         }
+
+        public static string GetExtension(string filePath)
+        {
+            try 
+            {
+                return filePath.Substring(filePath.LastIndexOf('.'));
+            }  
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+    }
+
+    public class Directory
+    {
+        public static int GetFilesNumber(string path) 
+        {
+            try {
+                string[] dir = System.IO.Directory.GetFiles(path);
+                
+                int numberOfFiles = dir.Length;
+
+                return numberOfFiles;
+
+            }
+            catch(Exception)
+            {
+                return -1;
+            }
+        }
+
+        public static long GetFilesNumberMulti(string[] paths)
+        {
+            try
+            {
+                long total = 0;
+                foreach (string path in paths)
+                {
+                    total += System.IO.Directory.GetFiles(path).Length;
+                }
+
+                return total; 
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public static string[] GetFiles(string path, int first = 0)
+        {
+            try
+            {
+                string[] files = System.IO.Directory.GetFiles(path);
+
+                if (first == 0)
+                    return files;
+
+                return files[..first];
+            }
+            catch (Exception)
+            {
+                return [];
+            }
+        }
+
+        public static Dictionary<string, string[]> GetFilesMulti(string[] paths)
+        {
+            try {
+                Dictionary<string, string[]> fileDictionary = new Dictionary<string, string[]>();
+
+                foreach (string path in paths)
+                {
+                    fileDictionary.Add(path, System.IO.Directory.GetFiles(path));
+                }
+
+                return fileDictionary;
+            }
+            catch(Exception)
+            {
+                return  new Dictionary<string, string[]>
+                {
+                    {"",[]}
+                };
+            }
+        }
+
+
+
+
     }
   
 

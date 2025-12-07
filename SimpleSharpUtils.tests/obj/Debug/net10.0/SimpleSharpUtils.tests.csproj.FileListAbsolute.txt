@@ -160,4 +160,3 @@ C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\obj\Debug\net10.0
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\obj\Debug\net10.0\SimpleSharpUtils.tests.pdb
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\obj\Debug\net10.0\SimpleSharpUtils.tests.genruntimeconfig.cache
 C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\obj\Debug\net10.0\ref\SimpleSharpUtils.tests.dll
-C:\Users\anton\Desktop\simpleSharpUtils\SimpleSharpUtils.tests\obj\Debug\net10.0\SimpleSharpUtils.tests.sourcelink.json
