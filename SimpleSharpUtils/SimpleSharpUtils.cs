@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,7 +13,7 @@ using System.Numerics;
 
 namespace FileUtils
 {   
-    public class File
+    public class UtilFile
     {
         //Read all contents of a file. Returns: string with all contents
         public static string ReadAll(string filePath)
@@ -149,84 +149,195 @@ namespace FileUtils
         }
     }
 
-    public class Directory
-    {
-        public static int GetFilesNumber(string path) 
+        public class UtilsDirectory
         {
-            try {
-                string[] dir = System.IO.Directory.GetFiles(path);
-                
-                int numberOfFiles = dir.Length;
-
-                return numberOfFiles;
-
-            }
-            catch(Exception)
+            public static int GetFilesNumber(string path) 
             {
-                return -1;
+                try {
+                    string[] dir = System.IO.Directory.GetFiles(path);
+                    
+                    int numberOfFiles = dir.Length;
+
+                    return numberOfFiles;
+
+                }
+                catch(Exception)
+                {
+                    return -1;
+                }
             }
+
+            public static long GetFilesNumberMulti(string[] paths)
+            {
+                try
+                {
+                    long total = 0;
+                    foreach (string path in paths)
+                    {
+                        total += System.IO.Directory.GetFiles(path).Length;
+                    }
+
+                    return total; 
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+
+            public static string[] GetFiles(string path, int first = 0)
+            {
+                try
+                {
+                    string[] files = System.IO.Directory.GetFiles(path);
+
+                    if (first == 0)
+                        return files;
+
+                    return files[..first];
+                }
+                catch (Exception)
+                {
+                    return [];
+                }
+            }
+
+            public static Dictionary<string, string[]> GetFilesMulti(string[] paths)
+            {
+                try 
+                {
+                    Dictionary<string, string[]> fileDictionary = new Dictionary<string, string[]>();
+
+                    foreach (string path in paths)
+                    {
+                        fileDictionary.Add(path, Directory.GetFiles(path).Select(Path.GetFileName).ToArray());
+                    }
+
+                    return fileDictionary;
+                }
+                catch(Exception)
+                {
+                    return  new Dictionary<string, string[]>
+                    {
+                        {"",new string[]  {}}
+                    };
+                }
+            }
+
+            public static string[] GetExtensions(string path)
+            {
+                try
+                {
+                    string[] files = System.IO.Directory.GetFiles(path);
+                    List<string> extensions = new List<string>();
+
+                    foreach (string file in files)
+                    {
+                        string extensionSubstring = file.Substring(file.LastIndexOf("."));
+
+                        extensions.Add(extensionSubstring);
+
+                        if (files.IndexOf(extensionSubstring) == -1) files.Append(extensionSubstring);
+                    }
+
+                    return extensions.ToArray();
+                }
+                catch (Exception)
+                {
+                    return [];
+                }
+            } 
+
+            public static decimal GetDirSize(string path, string measurement="KB", bool formatted=false)
+            {
+                try
+                {
+                    string[] files = System.IO.Directory.GetFiles(path);
+                    decimal totalSize = 0;
+
+                    foreach (string file in files)
+                    {
+                        totalSize += UtilFile.GetSize(file, measurement);
+                    }
+
+                    return totalSize;
+
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+
+            public static bool HasFile(string path, string filename)
+            {
+                try
+                {
+                    string[] files = System.IO.Directory.GetFiles(path);
+
+                    if (files.IndexOf(Path.Combine(path,filename)) != -1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+
+            public static string GetLargestFile(string path)
+            {
+                try {
+                    string[] files = System.IO.Directory.GetFiles(path);
+                    List<decimal> fileSizeList = new List<decimal>();
+
+                    foreach (string file in files)
+                    {
+                        fileSizeList.Add(UtilFile.GetSize(file, "KB"));
+                    }
+
+                    decimal[]fileSizeArray = fileSizeList.ToArray();
+
+                    decimal largestFile = fileSizeList.Max();
+
+                    string stringLargestFile = files[Array.IndexOf(fileSizeArray, largestFile)];
+
+                    return stringLargestFile.Substring(stringLargestFile.LastIndexOf("\\") + 1);
+                }
+                catch (Exception)
+                {
+                    return "";
+                }
         }
 
-        public static long GetFilesNumberMulti(string[] paths)
+        public static string GetSmallestFile(string path)
         {
-            try
-            {
-                long total = 0;
-                foreach (string path in paths)
+            try {
+                string[] files = Directory.GetFiles(path);
+                List<decimal> fileSizeList = new List<decimal>();
+
+                foreach (string file in files)
                 {
-                    total += System.IO.Directory.GetFiles(path).Length;
+                    fileSizeList.Add(UtilFile.GetSize(file, "KB"));
                 }
 
-                return total; 
+                decimal[] fileSizeArray = fileSizeList.ToArray();
+
+                decimal smallestFile = fileSizeArray.Min();
+
+                string stringSmallestFile = files[Array.IndexOf(fileSizeArray, smallestFile)];
+
+                return stringSmallestFile.Substring(stringSmallestFile.LastIndexOf("\\") + 1);
             }
             catch (Exception)
             {
-                return -1;
+                return "";
             }
         }
-
-        public static string[] GetFiles(string path, int first = 0)
-        {
-            try
-            {
-                string[] files = System.IO.Directory.GetFiles(path);
-
-                if (first == 0)
-                    return files;
-
-                return files[..first];
-            }
-            catch (Exception)
-            {
-                return [];
-            }
-        }
-
-        public static Dictionary<string, string[]> GetFilesMulti(string[] paths)
-        {
-            try {
-                Dictionary<string, string[]> fileDictionary = new Dictionary<string, string[]>();
-
-                foreach (string path in paths)
-                {
-                    fileDictionary.Add(path, System.IO.Directory.GetFiles(path));
-                }
-
-                return fileDictionary;
-            }
-            catch(Exception)
-            {
-                return  new Dictionary<string, string[]>
-                {
-                    {"",[]}
-                };
-            }
-        }
-
-
-
-
     }
-  
-
 }
