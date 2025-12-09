@@ -1,5 +1,5 @@
 ﻿using IOFile = System.IO.File;
-using UtilsFile = FileUtils.File;
+using UtilsFile = FileUtils.UtilFile;
 using System.Linq;
 
 namespace SimpleSharpUtils.Tests

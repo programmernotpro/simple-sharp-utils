@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleSharpUtils.tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ebed1651ece9e927e16436b9688d0464e5d0a33")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3bc863c58937b1b65df8225e53f31e97866918a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleSharpUtils.tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleSharpUtils.tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
